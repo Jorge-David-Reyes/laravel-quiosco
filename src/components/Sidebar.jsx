@@ -1,3 +1,4 @@
+import Categoria from "./Categoria"
 import { categorias } from "../data/categorias"
 
 export default function Sidebar() {
@@ -13,7 +14,9 @@ export default function Sidebar() {
         <div className="mt-10">
             {categorias.map(
                 categoria => (
-                    <p>{categoria.nombre}</p>
+                    <Categoria
+                        categoria={categoria}
+                    />
                 )
             )}
         </div>
