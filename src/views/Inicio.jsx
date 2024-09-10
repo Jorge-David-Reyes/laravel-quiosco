@@ -3,12 +3,11 @@ import Producto from '../components/Producto'
 import useQuiosco from '../hooks/useQuiosco'
 
 export default function Inicio() {
-  const { autenticado } = useQuiosco()
-  console.log(autenticado)
+  const { categoriaActual } = useQuiosco()
 
   return (
     <>
-      <h1 className='text-4xl font-black'>Inicio</h1>
+      <h1 className='text-4xl font-black'>{categoriaActual.nombre}</h1>
       <p className='text-2xl my-10'>
         Elige y personaliza tu pedido a continuacion
       </p>
