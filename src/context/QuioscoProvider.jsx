@@ -4,12 +4,10 @@ const QuioscoContext = createContext();
 
 const QuioscoProvider = ({children}) => {
     
-    const hola = () => {
-
-    }
+    const autenticado = true;
     return (
         <QuioscoContext.Provider value={{
-            hola
+            autenticado
         }}>
             {children}
         </QuioscoContext.Provider>
