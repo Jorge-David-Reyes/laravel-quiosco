@@ -3,6 +3,10 @@ import Sidebar from '../components/Sidebar'
 import Resumen from '../components/Resumen'
 
 export default function Layout() {
+
+  const { modal } = useQuiosco();
+  console.log(modal);
+
   return (
     <div className='md:flex'>
       <Sidebar/>
