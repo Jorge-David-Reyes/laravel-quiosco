@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+import { toast } from 'react-toastify';
 import { categorias as categoriasDB } from "../data/categorias"
 
 const QuioscoContext = createContext();
@@ -27,8 +28,10 @@ const QuioscoProvider = ({children}) => {
         if(pedido.some(pedidoState => pedidoState.id === producto.id)){
             const pedidoActualizado = pedido.map( pedidoState => pedidoState.id === producto.id ? producto : pedidoState);
             setPedido(pedidoActualizado);
+            toast.success("Guardado Correctamente");
         } else {
             setPedido([...pedido, producto]);
+            toast.success("Agregado al Pedido");
         }
     }
     
