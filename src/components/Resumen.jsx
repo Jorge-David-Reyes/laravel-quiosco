@@ -14,18 +14,18 @@ export default function Resumen() {
       </p>
 
       <div className="py-10">
-        {pedido.lenght === 0 ? (
-          <p className="text-center text-2xl">
-            No hay elementos en tu pedido aun
-          </p>
-        ) : (
-          pedido.map(producto => (
-            <ResumenProducto 
-              key={producto.id}
-              producto={producto}
-            />
-          ))
-        )}
+                {pedido.length === 0 ? (
+                    <p className="text-center text-2xl">
+                        No hay elementos en tu pedido aún
+                    </p>
+                ) : (
+                    pedido.map(producto => (
+                        <ResumenProducto 
+                            key={producto.id}
+                            producto={producto}
+                        />
+                    ))
+                )}
       </div>
 
       <p className="text-xl mt-10">
