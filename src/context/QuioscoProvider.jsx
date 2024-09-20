@@ -20,7 +20,8 @@ const QuioscoProvider = ({children}) => {
 
     const obtenerPedidoSlider = async () => {
         try {
-            const {data} = await axios.get('http://127.0.0.1:8000/api/categorias')
+            // console.log(import.meta.env.VITE_API_URL)
+            const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/api/categorias`)
             // console.log(data.data)
             setCategorias(data.data);
             setCategoriaActual(data.data[0]);
