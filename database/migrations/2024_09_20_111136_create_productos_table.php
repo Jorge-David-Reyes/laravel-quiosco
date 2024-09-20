@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->string('nomnbre');
+            $table->string('nombre');
             $table->double('precio');
             $table->string('imagen');
-            $table->boolean('disponible')->default();
+            $table->boolean('disponible')->default(1);
             $table->foreignId('categoria_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
