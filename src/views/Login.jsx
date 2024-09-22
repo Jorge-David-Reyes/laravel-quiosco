@@ -1,13 +1,47 @@
+import { createRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import clienteAxios from '../config/axios';
+import Alerta from '../components/Alerta';
 
 export default function Login() {
+  
+  const emailRef = createRef();
+  const passwordRef = createRef();
+
+  const [errores, setErrores] = useState([]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // console.log(nameRef.current.value);
+    const datos = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    }
+
+    try {
+      const {data} = await clienteAxios.post('/api/login', datos);
+      console.log(data.token);
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.errors) {
+        setErrores(Object.values(error.response.data.errors));
+        console.log('Hola')
+      } else {
+        console.error('Error desconocido:', error);
+      }
+    }
+  }
+
   return (
     <>
       <h1 className="text-4xl font-black">Iniciar Sesion</h1>
       <p>Para crear un pedido debes iniciar sesion</p>
 
       <div className="bg-white shadow-md rounded-md mt-10 px-5 py-10">
-          <form action="">
+          <form action=""
+            onSubmit={handleSubmit}
+
+          >
 
             <div className="mb-4">
               <label
@@ -20,6 +54,7 @@ export default function Login() {
                 className="mt-2 w-full block p-3 bg-gray-50"
                 name="email"
                 placeholder="Tu Email"
+                ref={emailRef}
               />
             </div>
 
@@ -34,6 +69,7 @@ export default function Login() {
                 className="mt-2 w-full block p-3 bg-gray-50"
                 name="password"
                 placeholder="Tu Password"
+                ref={passwordRef}
               />
             </div>
 
