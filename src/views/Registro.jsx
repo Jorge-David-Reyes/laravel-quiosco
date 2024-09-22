@@ -22,13 +22,16 @@ export default function Registro() {
       password: passwordRef.current.value,
       password_confirmation: passwordConfirmationRef.current.value,
     }
-    // console.log(datos);
 
     try {
-      const respuesta = await clienteAxios.post('/api/registro', datos);
+      const respuesta = await clienteAxios.post('api/registro', datos);
       console.log(respuesta);
     } catch (error) {
-      setErrores(Object.values(error.response.data.errors));
+      if (error.response && error.response.data && error.response.data.errors) {
+        setErrores(Object.values(error.response.data.errors));
+      } else {
+        console.error('Error desconocido:', error);
+      }
     }
   }
 
