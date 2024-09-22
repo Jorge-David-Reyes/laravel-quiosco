@@ -1,23 +1,25 @@
-import { crateRef, useState } from 'react';
+import { createRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import clienteAxios from '../config/axios';
 
 export default function Registro() {
 
-  const nameRef = crateRef();
-  const emailRef = crateRef();
-  const passwordRef = crateRef();
-  const passwordConfirmationRef = crateRef();
+  const nameRef = createRef();
+  const emailRef = createRef();
+  const passwordRef = createRef();
+  const passwordConfirmationRef = createRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // console.log(nameRef.current.value);
     const datos = {
       name: nameRef.current.value,
       email: emailRef.current.value,
       password: passwordRef.current.value,
       password_confirmation: passwordConfirmationRef.current.value,
     }
+    console.log(datos);
 
     try {
       const respuesta = await clienteAxios.post('/api/registro', datos);
@@ -35,7 +37,7 @@ export default function Registro() {
         <div className="bg-white shadow-md rounded-md mt-10 px-5 py-10">
             <form
               onSubmit={handleSubmit}
-              noValidated //Validacion de html5
+              novalidated = "true"
             >
               <div className="mb-4">
                 <label
@@ -78,6 +80,7 @@ export default function Registro() {
                   className="mt-2 w-full block p-3 bg-gray-50"
                   name="password"
                   placeholder="Tu Password"
+                  autoComplete='on'
                   ref={passwordRef}
                 />
               </div>
@@ -93,6 +96,7 @@ export default function Registro() {
                   className="mt-2 w-full block p-3 bg-gray-50"
                   name="password_confirmation"
                   placeholder="Repetir Password"
+                  autoComplete='on'
                   ref={passwordConfirmationRef}
                 />
               </div>
