@@ -42,7 +42,7 @@ export default function Login() {
             onSubmit={handleSubmit}
 
           >
-
+            {errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>) : null}
             <div className="mb-4">
               <label
                 className="text-slate-800"
