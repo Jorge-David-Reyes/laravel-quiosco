@@ -24,11 +24,12 @@ export default function Registro() {
     }
 
     try {
-      const respuesta = await clienteAxios.post('api/registro', datos);
-      console.log(respuesta);
+      const {data} = await clienteAxios.post('/api/registro', datos);
+      console.log(data.token);
     } catch (error) {
       if (error.response && error.response.data && error.response.data.errors) {
         setErrores(Object.values(error.response.data.errors));
+        console.log('Hola')
       } else {
         console.error('Error desconocido:', error);
       }
