@@ -22,7 +22,7 @@ export default function Registro() {
       password: passwordRef.current.value,
       password_confirmation: passwordConfirmationRef.current.value,
     }
-    console.log(datos);
+    // console.log(datos);
 
     try {
       const respuesta = await clienteAxios.post('/api/registro', datos);
