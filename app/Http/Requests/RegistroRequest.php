@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rules\Password as PasswordRules;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Password as PasswordRules;
+
 
 class RegistroRequest extends FormRequest
 {
@@ -24,17 +25,12 @@ class RegistroRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'unique:user, email'],
+            'email' => ['required', 'email', 'unique:users,email'],
             'password' => [
-                'required', 
-                'confirmed', 
-                PasswordRules::min(8)
-                    ->min(8)
-                    ->letters()
-                    ->symbols()
-                    ->numbers(),
-                
-            ],
+                'required',
+                'confirmed',
+                PasswordRules::min(8)->letters()->symbols()->numbers()
+            ]
         ];
     }
 
