@@ -23,7 +23,7 @@ export default function Registro() {
       const respuesta = await clienteAxios.post('/api/registro', datos);
       console.log(respuesta);
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data.errors);
     }
   }
 
@@ -35,6 +35,7 @@ export default function Registro() {
         <div className="bg-white shadow-md rounded-md mt-10 px-5 py-10">
             <form
               onSubmit={handleSubmit}
+              noValidated //Validacion de html5
             >
               <div className="mb-4">
                 <label
