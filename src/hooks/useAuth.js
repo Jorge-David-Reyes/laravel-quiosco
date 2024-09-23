@@ -43,6 +43,9 @@ export const useAuth = ({middleware, url}) =>{
         if(middleware === 'guest' && url && user){
             navigate(url);
         }
+        if(middleware === 'auth' && error){
+            navigate('/auth/login');
+        }
     }, [user, error]);
 
     console.log(user);
@@ -53,6 +56,8 @@ export const useAuth = ({middleware, url}) =>{
     return {
         login,
         registro,
-        logout
+        logout,
+        user,
+        error
     }
 }
