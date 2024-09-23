@@ -23,12 +23,7 @@ export default function Login() {
       const {data} = await clienteAxios.post('/api/login', datos);
       console.log(data.token);
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.errors) {
-        setErrores(Object.values(error.response.data.errors));
-        console.log('Hola')
-      } else {
-        console.error('Error desconocido:', error);
-      }
+      setErrores(Object.values(error.response.data.errors));
     }
   }
 
